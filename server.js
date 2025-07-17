@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const multer = require('multer');
 const fs = require('fs');
+require('dotenv').config();
 
 const app = express();
 const port = 3050;
@@ -13,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
-mongoose.connect('mongodb+srv://manasyeola13:nfIaBxxNgv4AD5Bh@cluster0.slyxwxw.mongodb.net/patients?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(process.env.MONGODB_URI)
 const db = mongoose.connection
 db.once('open',()=>{
     console.log("mongodb connection sucessfull")
