@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank Registration Form</title>
+    <link rel="stylesheet" href="/modern.css">
+</head>
+<body>
+    <nav>
+        <img src="./images/BLOOD.png" alt="PICTOBLOOD Logo">
+        <a href="Blood.HTML">Home</a>
+        <a href="Form.html" class="active">Patient Request</a>
+        <a href="FormD.html">Donor Registration</a>
+        <a href="/donors">Donors</a>
+        <a href="/requests">Requests</a>
+    </nav>
+    <div style="display:flex;gap:2.5em;max-width:1100px;margin:2em auto;align-items:flex-start;flex-wrap:wrap;">
+        <section style="flex:2 1 500px;min-width:320px;">
+            <section class="card">
+    <h2>Blood Bank Management System - Registration Form</h2>
+                <form action="/post" method="post" id="requestForm">
+                    <label for="patientFirstName">Patient's First Name:</label>
+                    <input type="text" id="patientFirstName" name="patientFirstName" required>
+                    <label for="patientLastName">Patient's Last Name:</label>
+                    <input type="text" id="patientLastName" name="patientLastName" required>
+                    <label for="attendeeFirstName">Attendee's First Name:</label>
+                    <input type="text" id="attendeeFirstName" name="attendeeFirstName" required>
+                    <label for="attendeeLastName">Attendee's Last Name:</label>
+                    <input type="text" id="attendeeLastName" name="attendeeLastName" required>
+                    <label for="attendeeMobile">Attendee's Mobile No.:</label>
+                    <input type="tel" id="attendeeMobile" name="attendeeMobile" pattern="[0-9]{10}" required>
+                    <label for="bloodGroup">Blood Group:</label>
+        <select id="bloodGroup" name="bloodGroup" required>
+            <option value="">Select</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+                    </select>
+                    <label for="requestType">Request Type:</label>
+        <select id="requestType" name="requestType" required>
+            <option value="">Select</option>
+                        <option value="Platelets">Platelets</option>
+            <option value="Blood">Blood</option>
+                    </select>
+                    <label for="quantity">Quantity (in litres, 1-10):</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="10" required>
+                    <label for="requiredDate">Required Date:</label>
+                    <input type="date" id="requiredDate" name="requiredDate" required>
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" required></textarea>
+                    <div style="margin-bottom:1em;">
+        <input type="checkbox" id="emergency" name="emergency">
+                        <label for="emergency">It is a critical emergency</label>
+                    </div>
+                    <div style="margin-bottom:1em;">
+        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I have read and agree to the Terms and Conditions and Privacy Policy</label>
+                    </div>
+                    <button type="submit">Submit</button>
+    </form>
+                <div id="form-message"></div>
+            </section>
+        </section>
+        <aside style="flex:1 1 300px;min-width:220px;">
+            <section class="card" style="background:#fff6f6;">
+                <h3>Need Help?</h3>
+                <ul style="font-size:1.05em;">
+                    <li>Contact <a href="mailto:support@pictoblood.com">support@pictoblood.com</a></li>
+                    <li>Read our <a href="WTDB.html">Why Donate?</a> page</li>
+                </ul>
+            </section>
+            <section class="card" style="background:#f9f9f9;">
+                <h3>Tips</h3>
+                <ul style="font-size:1.05em;">
+                    <li>Double-check your details before submitting.</li>
+                    <li>All fields are required.</li>
+                </ul>
+            </section>
+        </aside>
+    </div>
+    <footer style="color:#fff;">
+        &copy; 2024 eBloodCare. All rights reserved.
+    </footer>
+    <script src="/Form.js"></script>
+    <script>
+      // Redirect to dashboard after successful form submission
+      document.getElementById('requestForm').addEventListener('submit', function(e) {
+        setTimeout(function() {
+          window.location.href = '/dashboard';
+        }, 500); // Give the server a moment to process
+      });
+    </script>
+</body>
+</html>

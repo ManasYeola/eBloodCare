@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donation Portal</title>
+    <link rel="stylesheet" href="/modern.css">
+</head>
+<body>
+    <nav>
+        <img src="./images/BLOOD.png" alt="PICTOBLOOD Logo">
+        <a href="Blood.HTML" class="active">Home</a>
+        <a href="BLOG.html">Blog</a>
+        <a href="Gallery.html">Gallery</a>
+        <a href="WTDB.html">Why Donate?</a>
+        <a href="/donors">Donors</a>
+        <a href="/requests">Requests</a>
+        <a href="Login.html" id="loginBtn" style="margin-left:auto;">Login</a>
+        <a href="Signup.html" id="signupBtn" style="margin-left:0.5em;">Sign Up</a>
+        <a href="/dashboard" id="dashboardBtn" style="display:none; margin-left:0.5em;">Dashboard</a>
+        <a href="/logout" id="logoutBtn" style="margin-left:auto; display:none;">Logout</a>
+    </nav>
+    <section class="hero">
+        <img src="./images/BLOOD.png" alt="Blood Drop Logo" style="height:90px; margin-bottom:1em;">
+        <h1>DONATE <span style="color:var(--primary-dark)">YOUR BLOOD</span></h1>
+        <h2>Save lives. Make a difference. Join our community of heroes.</h2>
+        <p style="font-size:1.15em; color:#444; max-width:500px; margin:0 auto 1.5em auto;">Every drop counts. Be the reason for someone's heartbeat. Register as a donor or find blood near you now!</p>
+        <a href="RegisterD.html" class="cta-btn">Book Now</a>
+        <a href="FindBlood.html" id="findBloodBtn" class="cta-btn" style="background:#fff6f6; color:#b3001b; margin-left:1em;">Find Blood (Nearest Hospital)</a>
+        <div class="stats">
+            <div class="stat-card">
+                <img src="./images/blood-donation.jpg" alt="Blood Donation">
+                <div class="stat">10,000+</div>
+                <div class="desc">Lives Saved</div>
+            </div>
+            <div class="stat-card">
+                <img src="./images/Blood-1.jpg" alt="Donor">
+                <div class="stat">5,000+</div>
+                <div class="desc">Registered Donors</div>
+            </div>
+            <div class="stat-card">
+                <img src="./images/blood.jpg" alt="Requests">
+                <div class="stat">2,000+</div>
+                <div class="desc">Blood Requests</div>
+            </div>
+        </div>
+    </section>
+    <section class="card" style="max-width:700px; margin-top:2em;">
+        <h2>How to Donate</h2>
+        <ul style="text-align:left; font-size:1.1em; color:#333; line-height:1.7;">
+            <li>Drink extra water before your appointment.</li>
+            <li>Eat a healthy meal, avoid fatty foods.</li>
+            <li>Wear a shirt with sleeves you can roll up.</li>
+            <li>Let us know if you have a preferred arm or vein.</li>
+            <li>Relax, listen to music, or read while you donate.</li>
+        </ul>
+    </section>
+    <footer>
+        &copy; 2024 eBloodCare. All rights reserved.
+    </footer>
+    <script src="/Form.js"></script>
+    <script>
+      // IMPORTANT: After successful login, set localStorage.setItem('isLoggedIn', 'true'); in your login JS.
+      function updateNavAuth() {
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        document.getElementById('loginBtn').style.display = isLoggedIn ? 'none' : 'inline-block';
+        document.getElementById('signupBtn').style.display = isLoggedIn ? 'none' : 'inline-block';
+        document.getElementById('logoutBtn').style.display = isLoggedIn ? 'inline-block' : 'none';
+        document.getElementById('dashboardBtn').style.display = isLoggedIn ? 'inline-block' : 'none';
+      }
+      updateNavAuth();
+      document.getElementById('logoutBtn').onclick = function(e) {
+        e.preventDefault();
+        localStorage.setItem('isLoggedIn', 'false');
+        updateNavAuth();
+        window.location.href = 'Login.html';
+      };
+    </script>
+</body>
+</html>

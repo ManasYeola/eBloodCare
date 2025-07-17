@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600&display=swap');
+
+:root {
+  --primary: #d90429;
+  --primary-dark: #a3001b;
+  --accent: #ffb3b3;
+  --bg: #f8f9fa;
+  --text: #222;
+  --card-bg: #fff;
+  --shadow: 0 4px 24px rgba(0,0,0,0.07);
+}
+
+body {
+  font-family: 'Poppins', 'Montserrat', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 0.5em 2em;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+nav img {
+  height: 48px;
+  margin-right: 1em;
+}
+nav a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  margin: 0 1em;
+  font-size: 1.1em;
+  transition: color 0.2s;
+  position: relative;
+}
+nav a:hover, nav a.active {
+  color: var(--primary-dark);
+}
+nav a.active::after {
+  content: '';
+  display: block;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 2px;
+  width: 60%;
+  margin: 0.2em auto 0 auto;
+}
+
+.hero {
+  background: linear-gradient(120deg, #fff6f6 60%, #f8f9fa 100%);
+  padding: 3em 1em 2em 1em;
+  text-align: center;
+  border-radius: 0 0 2em 2em;
+  box-shadow: var(--shadow);
+  margin-bottom: 2em;
+}
+.hero h1 {
+  color: var(--primary);
+  font-size: 2.8em;
+  font-weight: 700;
+  margin-bottom: 0.2em;
+  letter-spacing: 1px;
+}
+.hero h2 {
+  color: var(--primary-dark);
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+.hero .cta-btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 2em;
+  padding: 0.9em 2.5em;
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-top: 1.5em;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(217,4,41,0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.hero .cta-btn:hover {
+  background: var(--primary-dark);
+  box-shadow: 0 4px 16px rgba(217,4,41,0.15);
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  margin: 2em 0 1em 0;
+  flex-wrap: wrap;
+}
+.stat-card {
+  background: var(--card-bg);
+  border-radius: 1em;
+  box-shadow: var(--shadow);
+  padding: 1.5em 2em;
+  min-width: 180px;
+  text-align: center;
+  margin: 0.5em 0;
+}
+.stat-card img {
+  height: 48px;
+  margin-bottom: 0.5em;
+}
+.stat-card .stat {
+  font-size: 2em;
+  color: var(--primary);
+  font-weight: 700;
+}
+.stat-card .desc {
+  color: #555;
+  font-size: 1.1em;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 1.2em;
+  box-shadow: var(--shadow);
+  padding: 2em 2.5em;
+  margin: 2em auto;
+  max-width: 480px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+  align-items: center;
+}
+input, select, textarea {
+  padding: 0.8em 1em;
+  border-radius: 0.7em;
+  border: 1.5px solid #eee;
+  font-size: 1em;
+  width: 100%;
+  max-width: 340px;
+  background: #fafbfc;
+  transition: border 0.2s;
+}
+input:focus, select:focus, textarea:focus {
+  border: 1.5px solid var(--primary);
+  outline: none;
+}
+label {
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 0.2em;
+  align-self: flex-start;
+}
+button, .btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 2em;
+  padding: 0.8em 2em;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1em;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(217,4,41,0.08);
+}
+button:hover, .btn:hover {
+  background: var(--primary-dark);
+  box-shadow: 0 4px 16px rgba(217,4,41,0.15);
+}
+
+.profile-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1em;
+}
+.profile-upload img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5em;
+  border: 2px solid var(--primary);
+}
+
+footer {
+  background: var(--primary);
+  color: #fff;
+  text-align: center;
+  padding: 1.5em 0 1em 0;
+  margin-top: 3em;
+  border-radius: 2em 2em 0 0;
+  font-size: 1em;
+}
+
+@media (max-width: 700px) {
+  nav { flex-direction: column; padding: 1em; }
+  .hero { padding: 2em 0.5em; }
+  .stats { flex-direction: column; gap: 1em; }
+  .card { padding: 1.2em 0.5em; }
+} 

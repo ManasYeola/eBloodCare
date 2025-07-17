@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a Donor</title>
+    <link rel="stylesheet" href="/modern.css">
+</head>
+<body>
+    <nav>
+        <img src="./images/BLOOD.png" alt="PICTOBLOOD Logo">
+        <a href="Blood.HTML">Home</a>
+        <a href="BLOG.html">Blog</a>
+        <a href="Gallery.html">Gallery</a>
+        <a href="WTDB.html">Why Donate?</a>
+        <a href="/donors">Donors</a>
+        <a href="/requests">Requests</a>
+        <a href="/dashboard" id="dashboardBtn" style="display:none; margin-left:0.5em;">Dashboard</a>
+    </nav>
+    <section class="card">
+        <h1 style="text-align:center; margin-bottom:0.5em;">Donor Information</h1>
+        <form action="/Form.html" method="get" enctype="multipart/form-data">
+            <div class="profile-upload">
+                <img src="./images/BLOOD.png" alt="Profile Preview" id="profilePreview">
+                <input type="file" id="profilePic" name="profilePic" accept="image/*" style="margin-top:0.5em;">
+        </div>
+            <label for="firstName">First Name <span style="color:var(--primary)">*</span></label>
+            <input type="text" id="firstName" name="firstName" required>
+            <label for="lastName">Last Name <span style="color:var(--primary)">*</span></label>
+            <input type="text" id="lastName" name="lastName" required>
+            <label for="phone">Phone <span style="color:var(--primary)">*</span></label>
+            <input type="tel" id="phone" name="phone" required>
+            <label for="bloodGroup">Blood Group <span style="color:var(--primary)">*</span></label>
+            <select id="bloodGroup" name="bloodGroup" required>
+                <option value="">Select</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+            </select>
+            <label for="district">District <span style="color:var(--primary)">*</span></label>
+            <input type="text" id="district" name="district" required>
+            <label for="address">Address</label>
+            <textarea id="address" name="address" rows="2"></textarea>
+            <button type="submit">Submit</button>
+        </form>    
+    </section>
+    <footer style="color:#fff;">
+        &copy; 2024 eBloodCare. All rights reserved.
+    </footer>
+    <script>
+      function updateNavAuth() {
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        document.getElementById('loginBtn').style.display = isLoggedIn ? 'none' : 'inline-block';
+        document.getElementById('signupBtn').style.display = isLoggedIn ? 'none' : 'inline-block';
+        document.getElementById('logoutBtn').style.display = isLoggedIn ? 'inline-block' : 'none';
+        document.getElementById('dashboardBtn').style.display = isLoggedIn ? 'inline-block' : 'none';
+      }
+      updateNavAuth();
+      document.getElementById('logoutBtn').onclick = function(e) {
+        e.preventDefault();
+        localStorage.setItem('isLoggedIn', 'false');
+        updateNavAuth();
+        window.location.href = 'Login.html';
+      };
+    </script>
+    <script src="/Form.js"></script>
+    <script>
+    // Profile image preview
+    document.getElementById('profilePic').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                document.getElementById('profilePreview').src = evt.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PICTOBLOOD</title>
+    <link rel="stylesheet" href="/modern.css">
+</head>
+<body>
+    <nav>
+        <img src="./images/BLOOD.png" alt="PICTOBLOOD Logo" style="height:40px;vertical-align:middle;margin-right:1em;">
+        <a href="Blood.HTML">Home</a>
+        <a href="Signup.html" style="margin-left:auto;">Sign Up</a>
+    </nav>
+    <section class="card" style="max-width:400px;">
+        <h2 style="text-align:center;">Login</h2>
+        <form id="loginForm" method="post" action="/login">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit" style="width:100%;margin-top:1em;">Login</button>
+        </form>
+        <div id="login-message" style="margin-top:1em;color:#b3001b;"></div>
+        <p style="text-align:center;margin-top:1em;">Don't have an account? <a href="Signup.html">Sign up</a></p>
+    </section>
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const msg = document.getElementById('login-message');
+      msg.textContent = '';
+      try {
+        const res = await fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        if (res.ok) {
+          localStorage.setItem('isLoggedIn', 'true');
+          localStorage.setItem('userEmail', email); // <-- Add this line
+          window.location.href = 'Blood.HTML';
+        } else {
+          const data = await res.json().catch(() => ({}));
+          msg.textContent = data.message || 'Login failed. Please try again.';
+        }
+      } catch (err) {
+        msg.textContent = 'Network error. Please try again.';
+      }
+    });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find Blood in Nearest Hospital</title>
+    <link rel="stylesheet" href="/modern.css">
+</head>
+<body>
+    <nav>
+        <a href="Blood.HTML">Home</a>
+        <a href="FindBlood.html">Find Blood</a>
+        <a href="BLOG.html">Blog</a>
+        <a href="Gallery.html">Gallery</a>
+        <a href="WTDB.html">Why Donate?</a>
+        <a href="/donors">Donors</a>
+        <a href="/requests">Requests</a>
+    </nav>
+    <section class="card">
+        <h1>Find Available Blood in Nearest Hospital</h1>
+        <form id="findBloodForm" onsubmit="event.preventDefault(); findBlood();">
+            <label for="bloodGroup">Blood Group:</label>
+            <select id="bloodGroup" name="bloodGroup" required>
+                <option value="">Select</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select>
+            <button type="submit">Find</button>
+        </form>
+        <div id="results"></div>
+    </section>
+    <script>
+        function findBlood() {
+            if (!navigator.geolocation) {
+                alert('Geolocation is not supported by your browser');
+                return;
+            }
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const bloodGroup = document.getElementById('bloodGroup').value;
+                fetch('/find-blood', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `bloodGroup=${encodeURIComponent(bloodGroup)}&latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
+                })
+                .then(res => res.json())
+                .then(data => {
+                    const resultsDiv = document.getElementById('results');
+                    if (!Array.isArray(data) || data.length === 0) {
+                        resultsDiv.innerHTML = '<p>No hospitals found with the required blood group nearby.</p>';
+                    } else {
+                        resultsDiv.innerHTML = '<h3>Nearest Hospitals with Available Blood:</h3>' +
+                            '<ul>' + data.map(h => `<li><b>${h.name}</b> (${h.address}) - ${h.distance.toFixed(2)} km away</li>`).join('') + '</ul>';
+                    }
+                });
+            }, function() {
+                alert('Unable to retrieve your location');
+            });
+        }
+    </script>
+    <footer>
+        &copy; 2024 eBloodCare. All rights reserved.
+    </footer>
+</body>
+</html> 

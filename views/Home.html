@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donation Portal - Home</title>
+    <link rel="stylesheet" href="/modern.css">
+    <style>
+        .home-links {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(179,0,27,0.08);
+            padding: 40px 30px 30px 30px;
+            text-align: center;
+        }
+        .home-links a {
+            display: inline-block;
+            margin: 15px 18px;
+            font-size: 1.15em;
+            color: #b3001b;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 0.5em 1.2em;
+            background: #fff6f6;
+            transition: background 0.2s, color 0.2s;
+        }
+        .home-links a:hover {
+            background: #b3001b;
+            color: #fff;
+        }
+        h1 {
+            color: #b3001b;
+            margin-bottom: 0.5em;
+        }
+        .hero-msg {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="home-links">
+        <h1>Blood Donation Portal</h1>
+        <div class="hero-msg">Welcome! Save lives by donating blood or requesting help. Use the links below to navigate.</div>
+        <a href="Blood.HTML">Home (Blood.HTML)</a>
+        <a href="Form.html">Patient Request Form</a>
+        <a href="FormD.html">Donor Registration Form</a>
+        <a href="RegisterD.html">Find a Donor</a>
+        <a href="RegisterR.html">Become a Donor</a>
+        <a href="BLOG.html">Blog</a>
+        <a href="WTDB.html">Why to Donate Blood?</a>
+        <a href="/donors">View All Donors</a>
+        <a href="/requests">View All Requests</a>
+        <a href="FindBlood.html" id="findBloodBtn" style="display:none;">Find Blood (Nearest Hospital)</a>
+    </div>
+    <script>
+        // Show the Find Blood button only if user is logged in (session cookie exists)
+        function isLoggedIn() {
+            // Check for session cookie (connect.sid) or a marker in localStorage
+            // This is a simple check; for robust auth, use server-side rendering
+            return document.cookie.includes('connect.sid=') || localStorage.getItem('userId');
+        }
+        if (isLoggedIn()) {
+            document.getElementById('findBloodBtn').style.display = 'inline-block';
+        }
+    </script>
+    <footer>
+        &copy; 2024 eBloodCare. All rights reserved.
+    </footer>
+</body>
+</html> 

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donation Blog</title>
+    <link rel="stylesheet" href="/modern.css">
+</head>
+<body>
+    <nav>
+        <img src="./images/BLOOD.png" alt="PICTOBLOOD Logo">
+        <a href="Blood.HTML">Home</a>
+        <a href="BLOG.html" class="active">Blog</a>
+        <a href="Gallery.html">Gallery</a>
+        <a href="WTDB.html">Why Donate?</a>
+        <a href="/donors">Donors</a>
+        <a href="/requests">Requests</a>
+        <a href="/dashboard" id="dashboardBtn" style="display:none; margin-left:0.5em;">Dashboard</a>
+    </nav>
+    <div style="display:flex;gap:2.5em;max-width:1200px;margin:2em auto;align-items:flex-start;flex-wrap:wrap;">
+        <section style="flex:2 1 600px;min-width:320px;">
+            <section class="card">
+                <h1>Blood Shortages: A Challenge Met with Innovation</h1>
+                <p style="font-size:1.1em;line-height:1.7;color:#333;">
+                    Blood transfusions are a critical part of modern medicine, saving countless lives every year. However, maintaining a safe and adequate blood supply is a continuous challenge faced by healthcare systems worldwide. Blood shortages can occur due to various factors, including:
+                </p>
+                <ul style="margin-left:1.5em;">
+                    <li>Decreased donor base: Fewer eligible or willing donors can lead to a shortage of blood products.</li>
+                    <li>Short shelf life: Blood components have a limited lifespan, making consistent replenishment crucial.</li>
+                    <li>Unexpected demand surges: Emergencies or natural disasters can create a sudden increase in blood needs.</li>
+                </ul>
+                <p style="font-size:1.1em;line-height:1.7;color:#333;">
+                    These shortages can have serious consequences, forcing hospitals to delay surgeries, ration blood products, or even turn away patients in critical situations.<br><br>
+                    <b>How can we help?</b>
+                </p>
+                <ul style="margin-left:1.5em;">
+                    <li>Enhanced Donor Management: Automate donor recruitment, track eligibility, and facilitate appointments.</li>
+                    <li>Improved Inventory Management: Real-time tracking for better control and less waste.</li>
+                    <li>Predictive Analytics: Analyze trends to predict shortages and trigger campaigns.</li>
+                    <li>Improved Communication: Better coordination between hospitals, centers, and banks.</li>
+                </ul>
+                <p style="font-size:1.1em;line-height:1.7;color:#333;">
+                    By investing in innovative technology, blood banks can contribute significantly to a more robust and reliable blood supply system, ultimately saving more lives.
+                </p>
+            </section>
+            <section class="card" style="margin-top:2em;">
+                <h2>DONATE BLOOD AND SAVE LIVES</h2>
+                <p style="font-size:1.1em;line-height:1.7;color:#333;">
+                    January is National Blood Donor Month, a time when we honor the generosity of blood donors and remind people about the importance of donating blood regularly. The winter months bring reduced donations due to illness and weather.<br><br>
+                    <b>"Giving equals Living"</b> – I absolutely wouldn't be here if it wasn't for the kindness of blood donors. I'm very grateful to everyone who donates.<br><br>
+                    Every two seconds, someone needs blood for surgeries, cancer treatments, childbirth, anemia, serious injuries, blood disorders, and more.<br><br>
+                    <b>Theme:</b> Celebrating Diversity, Inclusivity, and Equity in Blood Donation.<br><br>
+                    The most important thing to remember is that donating blood can save a life. Donors, especially those who donate regularly, keep our nation’s blood supply stable. If you are eligible, make an appointment to donate today!
+                </p>
+            </section>
+        </section>
+        <aside style="flex:1 1 300px;min-width:220px;">
+            <section class="card" style="background:#fff6f6; text-align:center;">
+                <img src="./images/blood.jpg" alt="Blood Donation" style="max-width:180px; margin-bottom:1em;">
+                <img src="./images/BLOOD.png" alt="Blood Drop Logo" style="max-width:120px; margin-bottom:1em;">
+            </section>
+            <section class="card" style="background:#f9f9f9;">
+                <h3>Quick Links</h3>
+                <ul style="font-size:1.05em;">
+                    <li><a href="/donors">View Donors</a></li>
+                    <li><a href="/requests">View Requests</a></li>
+                    <li><a href="WTDB.html">Why Donate?</a></li>
+                </ul>
+            </section>
+        </aside>
+    </div>
+    <footer>
+        &copy; 2024 eBloodCare. All rights reserved.
+    </footer>
+    <script src="/Form.js"></script>
+    <script>
+      function updateNavAuth() {
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        document.getElementById('loginBtn').style.display = isLoggedIn ? 'none' : 'inline-block';
+        document.getElementById('signupBtn').style.display = isLoggedIn ? 'none' : 'inline-block';
+        document.getElementById('logoutBtn').style.display = isLoggedIn ? 'inline-block' : 'none';
+        document.getElementById('dashboardBtn').style.display = isLoggedIn ? 'inline-block' : 'none';
+      }
+      updateNavAuth();
+      document.getElementById('logoutBtn').onclick = function(e) {
+        e.preventDefault();
+        localStorage.setItem('isLoggedIn', 'false');
+        updateNavAuth();
+        window.location.href = 'Login.html';
+      };
+    </script>
+</body>
+</html>

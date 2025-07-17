@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - PICTOBLOOD</title>
+    <link rel="stylesheet" href="/modern.css">
+    <style>
+        .gallery-main-content {
+            display: flex;
+            gap: 2.5em;
+            max-width: 1200px;
+            margin: 2em auto;
+            align-items: flex-start;
+        }
+        .gallery-left {
+            flex: 2 1 600px;
+            min-width: 320px;
+        }
+        .gallery-right {
+            flex: 1 1 300px;
+            min-width: 220px;
+        }
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 1.5em auto 2em auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(179,0,27,0.08);
+            background: #fff;
+        }
+        .carousel img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 16px 16px 0 0;
+        }
+        .carousel-caption {
+            background: rgba(179,0,27,0.85);
+            color: #fff;
+            padding: 0.7em 1em;
+            font-size: 1.1em;
+            text-align: center;
+            border-radius: 0 0 16px 16px;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+            border: none;
+            font-size: 2em;
+            padding: 0.2em 0.5em;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 2;
+        }
+        .carousel-btn.left { left: 10px; }
+        .carousel-btn.right { right: 10px; }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5em;
+            margin-top: 1em;
+        }
+        .gallery-grid img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(179,0,27,0.08);
+            object-fit: cover;
+            aspect-ratio: 1/1;
+        }
+        .gallery-quote {
+            font-size: 1.3em;
+            color: #b3001b;
+            font-style: italic;
+            margin-bottom: 1.2em;
+            text-align: left;
+        }
+        nav {
+            position: sticky;
+            top: 0;
+            width: 100vw;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            border-radius: 0;
+            margin-bottom: 0;
+        }
+        @media (max-width: 900px) {
+            .gallery-main-content { flex-direction: column; gap: 1.5em; }
+            .gallery-left, .gallery-right { min-width: 0; }
+            .carousel img { height: 180px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="./images/BLOOD.png" alt="PICTOBLOOD Logo" style="height:40px;vertical-align:middle;margin-right:1em;">
+        <a href="Blood.HTML">Home</a>
+        <a href="BLOG.html">Blog</a>
+        <a href="Gallery.html">Gallery</a>
+        <a href="WTDB.html">Why Donate?</a>
+        <a href="/donors">Donors</a>
+        <a href="/requests">Requests</a>
+    </nav>
+    <div class="gallery-main-content">
+        <section class="gallery-left">
+            <section class="card">
+                <div class="gallery-quote">“The gift of blood is the gift of life. There is no substitute for human blood.”</div>
+                <div class="carousel" id="carousel">
+                    <button class="carousel-btn left" onclick="prevSlide()">&#8592;</button>
+                    <img id="carousel-img" src="./images/blood-donation.jpg" alt="Blood Donation Event">
+                    <div class="carousel-caption" id="carousel-caption">A successful blood donation drive at our community center.</div>
+                    <button class="carousel-btn right" onclick="nextSlide()">&#8594;</button>
+                </div>
+                <h1>Gallery</h1>
+                <p style="font-size:1.1em; color:#333;">A collection of moments from our blood donation drives, events, and community stories.</p>
+                <div class="gallery-grid">
+                    <img src="./images/blood-donation.jpg" alt="Blood Donation Event">
+                    <img src="./images/Blood-1.jpg" alt="Donor Smiling">
+                    <img src="./images/blood.jpg" alt="Blood Drop">
+                    <img src="./images/BLOOD.png" alt="Blood Logo">
+                    <img src="./images/Blood-1.jpg" alt="Donor at Camp">
+                    <img src="./images/blood-donation.jpg" alt="Volunteers at Event">
+                    <!-- Add more images as needed -->
+                </div>
+            </section>
+        </section>
+        <aside class="gallery-right">
+            <section class="card" style="background:#fff6f6;">
+                <h3>Featured Stories</h3>
+                <ul style="font-size:1.05em;">
+                    <li><a href="BLOG.html">Read our Blog</a></li>
+                    <li><a href="WTDB.html">Why Donate?</a></li>
+                </ul>
+            </section>
+            <section class="card" style="background:#f9f9f9;">
+                <h3>Quick Links</h3>
+                <ul style="font-size:1.05em;">
+                    <li><a href="/donors">View Donors</a></li>
+                    <li><a href="/requests">View Requests</a></li>
+                </ul>
+            </section>
+        </aside>
+    </div>
+    <footer style="text-align:center; margin:2em 0; color:#b3001b; font-size:1em;">
+        &copy; 2024 eBloodCare. All rights reserved.
+    </footer>
+    <script>
+        const images = [
+            { src: './images/blood-donation.jpg', caption: 'A successful blood donation drive at our community center.' },
+            { src: './images/Blood-1.jpg', caption: 'A proud donor after giving blood.' },
+            { src: './images/blood.jpg', caption: 'Every drop counts. Donate blood, save lives.' },
+            { src: './images/BLOOD.png', caption: 'Our PICTOBLOOD logo inspires hope.' },
+            { src: './images/Blood-1.jpg', caption: 'Donors at our annual camp.' },
+            { src: './images/blood-donation.jpg', caption: 'Volunteers working together for a cause.' }
+        ];
+        let current = 0;
+        function showSlide(idx) {
+            current = (idx + images.length) % images.length;
+            document.getElementById('carousel-img').src = images[current].src;
+            document.getElementById('carousel-img').alt = images[current].caption;
+            document.getElementById('carousel-caption').textContent = images[current].caption;
+        }
+        function prevSlide() { showSlide(current - 1); }
+        function nextSlide() { showSlide(current + 1); }
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html> 

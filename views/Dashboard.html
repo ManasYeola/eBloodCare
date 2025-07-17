@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - PICTOBLOOD</title>
+    <link rel="stylesheet" href="/modern.css">
+    <style>
+        .dashboard-container {
+            display: flex;
+            gap: 2.5em;
+            max-width: 1200px;
+            margin: 2em auto;
+            align-items: flex-start;
+        }
+        .dashboard-left {
+            flex: 1 1 280px;
+            min-width: 260px;
+            background: #fff6f6;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(179,0,27,0.08);
+            padding: 2em 1.5em;
+        }
+        .dashboard-right {
+            flex: 2 1 500px;
+            min-width: 320px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(179,0,27,0.08);
+            padding: 2em 2.5em;
+        }
+        .dashboard-profile-pic {
+            height: 90px; width: 90px; border-radius: 50%; object-fit: cover; border: 3px solid #b3001b; margin-bottom: 1em;
+        }
+        .dashboard-actions a.button {
+            display: inline-block;
+            margin: 0.5em 1em 0.5em 0;
+        }
+        nav {
+            position: sticky;
+            top: 0;
+            width: 100vw;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            border-radius: 0;
+            margin-bottom: 0;
+        }
+        @media (max-width: 900px) {
+            .dashboard-container { flex-direction: column; gap: 1.5em; }
+            .dashboard-left, .dashboard-right { min-width: 0; padding: 1.2em 1em; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="./images/BLOOD.png" alt="PICTOBLOOD Logo" style="height:40px;vertical-align:middle;margin-right:1em;">
+        <a href="Blood.HTML">Home</a>
+        <a href="BLOG.html">Blog</a>
+        <a href="Gallery.html">Gallery</a>
+        <a href="WTDB.html">Why Donate?</a>
+        <a href="/donors">Donors</a>
+        <a href="/requests">Requests</a>
+        <a href="/logout" style="margin-left:auto;">Logout</a>
+    </nav>
+    <div id="dashboard-notifications"></div>
+    <div class="dashboard-container">
+        <aside class="dashboard-left">
+            <img src="{{USER_PIC}}" alt="Profile Picture" class="dashboard-profile-pic">
+            <h2 style="margin-bottom:0.2em;">{{GREETING}},</h2>
+            <h1 style="margin-top:0;">{{USER_NAME}}</h1>
+            <p style="font-size:1.1em; color:#b3001b; margin:0.5em 0;">{{USER_EMAIL}}</p>
+            <p style="font-size:1.1em; color:#333;">Role: <b>{{USER_ROLE}}</b></p>
+            <form action="/upload-profile-pic" method="post" enctype="multipart/form-data" style="margin:1.5em 0;">
+                <label for="profilePic">Change Profile Picture:</label>
+                <input type="file" name="profilePic" id="profilePic" accept="image/*" required style="margin-bottom:0.5em;">
+                <button type="submit">Upload</button>
+            </form>
+            <form action="/update-profile" method="post" style="margin:1.5em 0;">
+                <h3>Edit Profile</h3>
+                <input type="text" name="name" value="{{USER_NAME}}" required placeholder="Full Name">
+                <input type="email" name="email" value="{{USER_EMAIL}}" required placeholder="Email">
+                <input type="password" name="password" placeholder="New Password (leave blank to keep)">
+                <button type="submit">Update Profile</button>
+            </form>
+        </aside>
+        <main class="dashboard-right">
+            <div class="dashboard-actions">
+                <a href="/Form.html" class="button">Request Blood</a>
+                <a href="/FormD.html" class="button">Become a Donor</a>
+                <a href="/donors" class="button">View Donors</a>
+                <a href="/requests" class="button">View Requests</a>
+            </div>
+            <div class="card" style="margin:2em 0 1em 0;background:#fff6f6;">
+                <h3>Your Stats</h3>
+                <ul style="list-style:none;padding:0;font-size:1.1em;">
+                    <li><b>Total Donations:</b> {{TOTAL_DONATIONS}}</li>
+                    <li><b>Total Requests:</b> {{TOTAL_REQUESTS}}</li>
+                    <li><b>Last Donation:</b> {{LAST_DONATION}}</li>
+                </ul>
+            </div>
+            <div class="card" style="margin:1em 0;background:#f9f9f9;">
+                <h3>Recent Requests</h3>
+                <ul style="font-size:1.05em;">{{RECENT_REQUESTS}}</ul>
+                <h3>Recent Donations</h3>
+                <ul style="font-size:1.05em;">{{RECENT_DONATIONS}}</ul>
+            </div>
+            <div class="card" style="margin:1em 0;background:#fff;">
+                <h3>Notifications & Alerts</h3>
+                <ul style="font-size:1.05em;">
+                    <li>Need help? <a href="mailto:support@pictoblood.com">Contact Support</a></li>
+                    <li>Check our <a href="WTDB.html">Why Donate?</a> page for more info.</li>
+                    <li>Remember to update your profile regularly!</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+    <footer style="text-align:center; margin:2em 0; color:#b3001b; font-size:1em;">
+        &copy; 2024 eBloodCare. All rights reserved.
+    </footer>
+    <style>
+        .dark-theme {
+            background: #181818 !important;
+            color: #fff !important;
+        }
+        .dark-theme .card, .dark-theme nav, .dark-theme footer {
+            background: #232323 !important;
+            color: #fff !important;
+        }
+        .dark-theme input, .dark-theme textarea, .dark-theme select {
+            background: #232323 !important;
+            color: #fff !important;
+            border-color: #b3001b !important;
+        }
+        .dark-theme a { color: #ff4d4d !important; }
+    </style>
+    <script>
+// --- DASHBOARD DYNAMIC DATA ---
+document.addEventListener('DOMContentLoaded', async function() {
+    // Get user email from localStorage (set on login)
+    const email = localStorage.getItem('userEmail');
+    if (!email) {
+        alert('Not logged in!');
+        window.location.href = 'Login.html';
+        return;
+    }
+    try {
+        const res = await fetch(`/api/dashboard-data?email=${encodeURIComponent(email)}`);
+        if (!res.ok) throw new Error('Failed to load dashboard data');
+        const data = await res.json();
+        // Notifications
+        const notifDiv = document.getElementById('dashboard-notifications');
+        notifDiv.innerHTML = '';
+        if (data.notifications && data.notifications.length) {
+            data.notifications.forEach(n => {
+                const el = document.createElement('div');
+                el.className = 'notif notif-' + n.type;
+                el.textContent = n.message;
+                notifDiv.appendChild(el);
+            });
+        }
+        // Profile
+        document.querySelector('.dashboard-profile-pic').src = data.profilePic;
+        document.querySelector('h1').textContent = data.name;
+        document.querySelector('h2').textContent = (data.eligible ? 'Welcome back' : 'Thank you') + ',';
+        document.querySelector('p[style*="color:#b3001b"]').textContent = data.email;
+        document.querySelector('p[style*="color:#333"] b').textContent = data.role;
+        // Update Edit Profile form fields
+        const editForm = document.querySelector('form[action="/update-profile"]');
+        if (editForm) {
+            editForm.elements['name'].value = data.name;
+            editForm.elements['email'].value = data.email;
+        }
+        // Stats
+        const stats = document.querySelector('.dashboard-right ul');
+        stats.innerHTML = `<li><b>Total Donations:</b> ${data.totalDonations}</li>
+            <li><b>Total Requests:</b> ${data.totalRequests}</li>
+            <li><b>Last Donation:</b> ${data.lastDonation ? new Date(data.lastDonation).toLocaleDateString() : 'N/A'}</li>
+            <li><b>Eligibility:</b> ${data.eligible ? 'You can donate now!' : 'You can donate in ' + data.daysLeft + ' days'}</li>`;
+        // Recent Requests/Donations
+        const reqList = document.querySelectorAll('.card ul')[1];
+        reqList.innerHTML = data.recentRequests.length ? data.recentRequests.map(r => `<li>${r.date ? new Date(r.date).toLocaleDateString() : ''} - ${r.bloodGroup} (${r.quantity}L)</li>`).join('') : '<li>No recent requests</li>';
+        const donList = document.querySelectorAll('.card ul')[2];
+        donList.innerHTML = data.recentDonations.length ? data.recentDonations.map(d => `<li>${d.date ? new Date(d.date).toLocaleDateString() : ''} - ${d.bloodGroup} (${d.quantity}L)</li>`).join('') : '<li>No recent donations</li>';
+        // Recommendations
+        let recCard = document.createElement('div');
+        recCard.className = 'card';
+        recCard.style.margin = '1em 0';
+        recCard.style.background = '#fff6f6';
+        recCard.innerHTML = `<h3>Upcoming Donation Camps</h3><ul style=\"font-size:1.05em;\">${data.recommendations.map(r => `<li><b>${r.title}</b> - ${r.date} @ ${r.location}</li>`).join('')}</ul>`;
+        document.querySelector('.dashboard-right').appendChild(recCard);
+        // Impact Tracker
+        let impactCard = document.createElement('div');
+        impactCard.className = 'card';
+        impactCard.style.margin = '1em 0';
+        impactCard.style.background = '#f4f4f4';
+        const livesSaved = data.totalDonations * 3;
+        impactCard.innerHTML = `<h3>Your Impact</h3><p>You have helped save <b>${livesSaved}</b> lives!</p>`;
+        document.querySelector('.dashboard-right').appendChild(impactCard);
+    } catch (err) {
+        alert('Error loading dashboard: ' + err.message);
+    }
+});
+</script>
+<style>
+.notif { padding: 1em; margin: 1em auto; max-width: 700px; border-radius: 8px; font-size: 1.1em; text-align: center; }
+.notif-info { background: #fff6f6; color: #b3001b; border: 1px solid #b3001b33; }
+.notif-success { background: #e6fff2; color: #008a3a; border: 1px solid #008a3a33; }
+</style>
+<!-- Move and fix Tawk.to chat widget -->
+<!-- Place this just before </body> -->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+// IMPORTANT: Replace YOUR_PROPERTY_ID/1hxxxxxxx with your real Tawk.to property ID
+s1.src='https://embed.tawk.to/6877bb72b00c4c190e1cb3fd/1j09r8ee8';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+</body>
+</html> 
