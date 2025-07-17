@@ -60,7 +60,7 @@ const userAuthSchema = new mongoose.Schema({
 const AuthUser = mongoose.model('authuser', userAuthSchema);
 
 app.use(session({
-    secret: 'blooddonation_secret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
 }));
