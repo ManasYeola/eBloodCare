@@ -8,17 +8,14 @@ eBloodCare streamlines the process of registering donors, requesting blood, and 
 
 ## 🚀 Features
 
-- 🏠 **Landing Page:** Dynamic homepage with live stats and easy access to key actions  
-- 🔐 **User Authentication:** Secure login & registration with password hashing (bcrypt)  
-- 📊 **Personal Dashboard:** Track user stats, view recent activity, and update profile  
-- 📝 **Blood Request Form:** Patients can request specific blood groups with details  
-- 💉 **Donor Registration:** Register as a donor with availability & contact info  
-- 📍 **Find Blood Nearby:** Use geolocation to find available blood in nearby hospitals  
-- 📰 **Blog & Gallery:** Informative blogs and photo gallery of blood donation events  
-- ❓ **Why Donate:** Educational content on the importance of blood donation  
-- 🖼️ **Profile Picture Upload:** Upload or change profile pictures securely  
-- 👤 **Role Management:** Basic support for user and donor roles (future admin support ready)  
-- 🕒 **Session Management:** Seamless login state handling using express-session  
+- 🏠 **Dynamic Landing Page:** Live stats and quick access to key actions  
+- 🔐 **User Authentication:** Secure login & registration  
+- 📊 **Personal Dashboard:** Track stats, recent activity, and manage your profile  
+- 📝 **Blood Request & Donor Forms:** Easy forms for patients and donors  
+- 📍 **Find Blood Nearby:** Geolocation-based search for available blood  
+- 💬 **Live Chat Support:** Real-time help via Tawk.to chat widget  
+- 📰 **Blog & Gallery:** Stories and photos from donation events  
+- ❓ **Why Donate:** Educational content on blood donation  
 
 ---
 
